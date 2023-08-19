@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import BlogView from "./BlogView";
 const Home = () => {
   const [Blogs, setBlogs] = useState([
     {
@@ -15,17 +16,16 @@ const Home = () => {
     {
       title: "Tired Day",
       body: "Temdsjfljadsjfoodsofdsfhdshf sdhfhdshfhasodhfohdsfkjsandf",
-      author: "Ann",
+      author: "Teacher",
     },
   ]);
   return (
     <div className="home">
-      {Blogs.map((blog) => (
-        <div className="blog-preview">
-          <h2>{blog.title}</h2>
-          <p>Written By {blog.author}</p>
-        </div>
-      ))}
+      <BlogView blogs={Blogs} heading="Recent Blogs" />
+      <BlogView
+        blogs={Blogs.filter((Blogs) => Blogs.author === "Teacher")}
+        heading="Teacher's Blogs"
+      />
     </div>
   );
 };
