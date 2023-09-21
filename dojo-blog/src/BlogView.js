@@ -1,4 +1,4 @@
-const BlogView = ({ blogs, heading }) => {
+const BlogView = ({ blogs, heading, handleDelete }) => {
   return (
     <div className="blog-main">
       <h3>{heading}</h3>
@@ -6,6 +6,13 @@ const BlogView = ({ blogs, heading }) => {
         <div className="blog-preview">
           <h2>{blog.title}</h2>
           <p>Written By {blog.author}</p>
+          <button
+            onClick={() => {
+              handleDelete(blog.id);
+            }}
+          >
+            Delete Blog
+          </button>
         </div>
       ))}
     </div>
