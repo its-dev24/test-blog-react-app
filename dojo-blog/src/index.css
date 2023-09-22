@@ -61,3 +61,20 @@
   padding-left: 20px;
   margin-bottom: 20px;
 }
+
+.blog-preview a {
+  text-decoration: none;
+}
+
+/* Blog details page */
+
+.blog-details h1 {
+  color: #f2135d;
+  margin-bottom: 10px;
+}
+.blog-details h3 {
+  margin-bottom: 20px;
+}
+.blog-details div {
+  margin: 20px, 0;
+}
