@@ -1,43 +1,28 @@
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlogView from "./BlogView";
-const Home = () => {
-  const [Blogs, setBlogs] = useState([
-    {
-      id: "1",
-      title: "First Day in College",
-      body: "Temdsjfljadsjfoodsofdsfhdshf sdhfhdshfhasodhfohdsfkjsandf",
-      author: "Mario",
-    },
-    {
-      id: "2",
-      title: "Work Blog",
-      body: "Temdsjfljadsjfoodsofdsfhdshf sdhfhdshfhasodhfohdsfkjsandf",
-      author: "Teacher",
-    },
-    {
-      id: "3",
-      title: "Tired Day",
-      body: "Temdsjfljadsjfoodsofdsfhdshf sdhfhdshfhasodhfohdsfkjsandf",
-      author: "Teacher",
-    },
-  ]);
+import useFetch from "./useFetch";
 
-  const handleDelete = (id) => {
-    let newBlog = Blogs.filter((Blogs) => Blogs.id != id);
-    setBlogs(newBlog);
-  };
+const Home = () => {
+  const {
+    data_state: Blogs,
+    isPending,
+    error,
+  } = useFetch("http://localhost:8000/blogs");
+
   return (
     <div className="home">
-      <BlogView
-        blogs={Blogs}
-        heading="Recent Blogs"
-        handleDelete={handleDelete}
-      />
-      <BlogView
-        blogs={Blogs.filter((Blogs) => Blogs.author === "Teacher")}
-        heading="Teacher's Blogs"
-      />
+      {error && <div>{error}</div>}
+
+      {isPending && <div>Loading ...</div>}
+
+      {Blogs && <BlogView blogs={Blogs} heading="Recent Blogs" />}
+      {/* {Blogs && (
+        <BlogView
+          blogs={Blogs.filter((Blogs) => Blogs.author === "mario")}
+          heading="Mario's Blogs"
+        />
+      )} */}
     </div>
   );
 };
