@@ -17,9 +17,11 @@ const Create = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(blog),
-    }).then(console.log("Blog added"));
-    setIsPending(false);
-    history.push("/");
+    }).then(() => {
+      console.log("Blog added");
+      setIsPending(false);
+      history.push("/");
+    });
   };
   return (
     <div className="create">
